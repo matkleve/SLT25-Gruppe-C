@@ -3,6 +3,17 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
         Board board = new Board();
+<<<<<<< Updated upstream
         board.printBoard(); // Basic rendering
+=======
+        board.print(); // Basic rendering
+
+        Player player1 = new Player( 'X');
+        Player player2 = new Player('O');
+
+
+
+
+>>>>>>> Stashed changes
     }
 }

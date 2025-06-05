@@ -1,48 +1,55 @@
 package org.example;
 
 public class Board {
-    private char[][] board;
-    private final int SIZE = 3;
+    private char[][] cells;
+
 
     public Board() {
-        board = new char[SIZE][SIZE];
-        initializeBoard();
+        cells = new char[3][3];
+        clear();
     }
 
-    public void initializeBoard() {
-        for (int i = 0; i < SIZE; i++)
-            for (int j = 0; j < SIZE; j++)
-                board[i][j] = ' ';
+    public boolean isCellEmpty(int x, int y) {
+        return cells[x][y] == ' ';
     }
 
-    public boolean makeMove(int row, int col, char symbol) {
-        if (row >= 0 && row < SIZE && col >= 0 && col < SIZE && board[row][col] == ' ') {
-            board[row][col] = symbol;
-            return true;
-        }
-        return false;
-    }
-
-    public void printBoard() {
-        System.out.println("-------------");
-        for (int i = 0; i < SIZE; i++) {
-            System.out.print("| ");
-            for (int j = 0; j < SIZE; j++) {
-                System.out.print(board[i][j] + " | ");
-            }
-            System.out.println("\n-------------");
+    public void place(int x, int y, char marker) {
+        if (isCellEmpty(x, y)) {
+            cells[x][y] = marker;
         }
     }
 
     public boolean isFull() {
-        for (int i = 0; i < SIZE; i++)
-            for (int j = 0; j < SIZE; j++)
-                if (board[i][j] == ' ')
-                    return false;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (cells[i][j] == ' ') return false;
+            }
+        }
         return true;
     }
 
-    public char[][] getBoard() {
-        return board;
+    public void clear() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                cells[i][j] = ' ';
+            }
+        }
+    }
+
+    public void print() {
+        System.out.println("  0 1 2");
+        for (int i = 0; i < 3; i++) {
+            System.out.print(i + " ");
+            for (int j = 0; j < 3; j++) {
+                System.out.print(cells[i][j]);
+                if (j < 2) System.out.print("|");
+            }
+            System.out.println();
+            if (i < 2) System.out.println("  -----");
+        }
+    }
+
+    public char[][] getCells() {
+        return cells;
     }
 }
