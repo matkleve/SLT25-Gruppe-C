@@ -6,7 +6,7 @@ public class Main {
         board.print(); // Basic rendering
 
         Player playerX = new Player('X');
-        Player player = new Player('O');
+        Player playerO = new Player('O');
 
     }
 }
