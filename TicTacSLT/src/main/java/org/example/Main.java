@@ -3,13 +3,10 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
         Board board = new Board();
-        board.printBoard(); // Basic rendering
         board.print(); // Basic rendering
 
-
-        Player player1 = new Player( 'X');
-        Player player2 = new Player('O');
-
+        Player playerX = new Player('X');
+        Player playerO = new Player('O');
 
     }
 }
