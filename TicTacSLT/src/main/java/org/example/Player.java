@@ -1,16 +1,18 @@
 package org.example;
 
+// Represents a player in the game
 public class Player {
 
-    private char symbol;
+    // The player's symbol (e.g., 'X' or 'O')
+    private char marker;
 
-    public Player( char symbol) {
-        this.symbol = symbol;
+    // Constructor: initializes the player with a marker
+    public Player(char marker) {
+        this.marker = marker;
     }
 
-
-
-    public char getSymbol() {
-        return symbol;
+    // Returns the player's marker
+    public char getMarker() {
+        return marker;
     }
 }
