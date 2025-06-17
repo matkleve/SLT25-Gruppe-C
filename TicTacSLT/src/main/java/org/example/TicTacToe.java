@@ -1,16 +1,17 @@
 package org.example;
 
+import java.util.Scanner;
+
 public class TicTacToe {
-    private Player player1;
-    private Player player2;
+    private Player playerX;
+    private Player playerO;
     private Player currentPlayer;
     private Board board;
 
-    
     public TicTacToe() {
-        player1 = new Player('X');
-        player2 = new Player('O');
-        currentPlayer = player1;
+        playerX = new Player('X');
+        playerO = new Player('O');
+        currentPlayer = playerX;
         board = new Board();
     }
 
@@ -21,10 +22,10 @@ public class TicTacToe {
         while (true) {
             board.print();
             System.out.println("Spieler " + currentPlayer.getMarker() + " ist am Zug.");
-            System.out.print("Zeile (0-2): ");
-            int x = scanner.nextInt();
-            System.out.print("Spalte (0-2): ");
-            int y = scanner.nextInt();
+            System.out.print("Zeile (1-3): ");
+            int x = scanner.nextInt() - 1;
+            System.out.print("Spalte (1-3): ");
+            int y = scanner.nextInt() - 1;
 
             if (board.isCellEmpty(x, y)) {
                 board.place(x, y, currentPlayer.getMarker());
@@ -50,7 +51,7 @@ public class TicTacToe {
     }
 
     private void switchCurrentPlayer() {
-        currentPlayer = (currentPlayer == player1) ? player2 : player1;
+        currentPlayer = (currentPlayer == playerX) ? playerO : playerX;
     }
 
     private boolean hasWinner() {
