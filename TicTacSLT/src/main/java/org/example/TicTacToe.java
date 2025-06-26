@@ -15,6 +15,27 @@ public class TicTacToe {
         board = new Board();
     }
 
+    public Player getPlayerX() {
+        return playerX;
+    }
+
+    public Player getPlayerO() {
+        return playerO;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public Player setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+        return this.currentPlayer;
+    }
+
     public void start() {
         Scanner scanner = new Scanner(System.in);
         board.clear();
@@ -50,11 +71,11 @@ public class TicTacToe {
         scanner.close();
     }
 
-    private void switchCurrentPlayer() {
+    public void switchCurrentPlayer() {
         currentPlayer = (currentPlayer == playerX) ? playerO : playerX;
     }
 
-    private boolean hasWinner() {
+    public boolean hasWinner() {
         char[][] c = board.getCells();
         char m = currentPlayer.getMarker();
 
