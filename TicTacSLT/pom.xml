@@ -22,12 +22,7 @@
             <version>5.9.3</version>
             <scope>test</scope>
         </dependency>
-    <!-- Add missing checkstyle dependency -->
-        <dependency>
-            <groupId>org.checkstyle</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version>10.8.1</version>
-        </dependency>
+    <!-- Removed unnecessary checkstyle dependency -->
     </dependencies>
 
     <build>
