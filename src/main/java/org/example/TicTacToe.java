@@ -43,10 +43,9 @@ public class TicTacToe {
         while (true) {
             board.print();
             System.out.println("Spieler " + currentPlayer.getMarker() + " ist am Zug.");
-            System.out.print("Zeile (1-3): ");
-            int x = scanner.nextInt() - 1;
-            System.out.print("Spalte (1-3): ");
-            int y = scanner.nextInt() - 1;
+
+            int x = getCoordinate(scanner, "Zeile (1-3): ") - 1;
+            int y = getCoordinate(scanner, "Spalte (1-3): ") - 1;
 
             if (board.isCellEmpty(x, y)) {
                 board.place(x, y, currentPlayer.getMarker());
@@ -68,7 +67,14 @@ public class TicTacToe {
                 System.out.println("Feld ist bereits belegt. Nochmal versuchen.");
             }
         }
+
         scanner.close();
+    }
+
+    // Hilfsmethode: Einlesen einer Koordinate mit Prompt
+    private int getCoordinate(Scanner scanner, String prompt) {
+        System.out.print(prompt);
+        return scanner.nextInt();
     }
 
     public void switchCurrentPlayer() {
