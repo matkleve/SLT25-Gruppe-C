@@ -1,24 +1,39 @@
-name: CI - Build & Test
+name: Java CI/CD
 
 on:
   push:
     branches:
-      - "**"
+      - main
+      - "feature/**"
   pull_request:
+    branches:
+      - main
+      - "feature/**"
 
 jobs:
-  build-test:
+  test:
     runs-on: ubuntu-latest
-
+    if: startsWith(github.ref, 'refs/heads/feature/')
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up JDK 22
-        uses: actions/setup-java@v4
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
         with:
-          java-version: "22"
-          distribution: "temurin"
+          distribution: temurin
+          java-version: 22
+      - run: mvn clean test checkstyle:check
 
-      - name: Build and run tests
-        run: mvn clean test checkstyle:check
+  build-and-deliver:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: test
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 22
+      - run: mvn clean package
+      - uses: actions/upload-artifact@v3
+        with:
+          name: TicTacSLT-jar
+          path: target/*.jar
