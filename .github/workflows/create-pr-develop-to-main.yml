@@ -1,4 +1,5 @@
-name: CI and Create PR to Main
+name: Create PR Develop to Main - Automated Workflow
+# This workflow runs on pushes to the develop branch, runs tests, and creates a pull request
 
 on:
   push:

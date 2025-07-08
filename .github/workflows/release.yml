@@ -1,4 +1,5 @@
-name: Release - Build and Deliver
+name: Release Main - Build and Upload Artifact
+# This workflow builds the project on pushes to the main branch and uploads the JAR artifact
 
 on:
   push:
@@ -23,7 +24,7 @@ jobs:
         run: mvn clean package
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.0.0
         with:
           name: TicTacSLT-jar
           path: target/*.jar

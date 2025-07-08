@@ -1,4 +1,5 @@
-name: CI - Build & Test
+name: CI - Build & Test all branches
+# This workflow builds and tests the project on all branches, ensuring code quality and functionality
 
 on:
   push:
