@@ -1,5 +1,4 @@
-name: Create PR Develop to Main - Automated Workflow
-# This workflow runs on pushes to the develop branch, runs tests, and creates a pull request
+name: Auto PR from develop to main
 
 on:
   push:
@@ -11,14 +10,11 @@ permissions:
   pull-requests: write
 
 jobs:
-  test-and-create-pr:
+  create-pr:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout develop branch
-        uses: actions/checkout@v4
-        with:
-          ref: develop
+      - uses: actions/checkout@v4
 
       - name: Set up JDK 22
         uses: actions/setup-java@v4
@@ -29,15 +25,13 @@ jobs:
       - name: Run tests
         run: mvn clean test checkstyle:check
 
-      - name: Create or update Pull Request to main
+      - name: Create or update pull request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: "Automated PR: Promote develop to main"
           body: |
-            This pull request was automatically created by CI after all tests passed on develop.
-
-            Please review and merge when ready.
+            This PR was created automatically after all tests passed on develop.
           base: main
           branch: develop
           draft: false
