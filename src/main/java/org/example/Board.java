@@ -5,7 +5,7 @@ public class Board {
 
     public Board() {
         cells = new char[3][3];
-        clear();
+        this.clear();
     }
 
     public boolean isCellEmpty(int x, int y) {
