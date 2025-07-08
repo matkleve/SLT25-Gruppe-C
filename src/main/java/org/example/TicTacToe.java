@@ -41,34 +41,49 @@ public class TicTacToe {
         board.clear();
 
         while (true) {
-            board.print();
-            System.out.println("Spieler " + currentPlayer.getMarker() + " ist am Zug.");
-            System.out.print("Zeile (1-3): ");
-            int x = scanner.nextInt() - 1;
-            System.out.print("Spalte (1-3): ");
-            int y = scanner.nextInt() - 1;
-
-            if (board.isCellEmpty(x, y)) {
-                board.place(x, y, currentPlayer.getMarker());
-
-                if (hasWinner()) {
-                    board.print();
-                    System.out.println("Spieler " + currentPlayer.getMarker() + " gewinnt!");
-                    break;
-                }
-
-                if (board.isFull()) {
-                    board.print();
-                    System.out.println("Unentschieden!");
-                    break;
-                }
-
-                switchCurrentPlayer();
-            } else {
-                System.out.println("Feld ist bereits belegt. Nochmal versuchen.");
+            playRound(scanner);
+            if (isGameOver()) {
+                break;
             }
+            switchCurrentPlayer();
         }
+
         scanner.close();
+    }
+
+    private void playRound(Scanner scanner) {
+        board.print();
+        System.out.println("Spieler " + currentPlayer.getMarker() + " ist am Zug.");
+
+        int x = getCoordinate(scanner, "Zeile (1-3): ") - 1;
+        int y = getCoordinate(scanner, "Spalte (1-3): ") - 1;
+
+        if (board.isCellEmpty(x, y)) {
+            board.place(x, y, currentPlayer.getMarker());
+        } else {
+            System.out.println("Feld ist bereits belegt. Nochmal versuchen.");
+        }
+    }
+
+    private boolean isGameOver() {
+        if (hasWinner()) {
+            board.print();
+            System.out.println("Spieler " + currentPlayer.getMarker() + " gewinnt!");
+            return true;
+        }
+
+        if (board.isFull()) {
+            board.print();
+            System.out.println("Unentschieden!");
+            return true;
+        }
+
+        return false;
+    }
+
+    private int getCoordinate(Scanner scanner, String prompt) {
+        System.out.print(prompt);
+        return scanner.nextInt();
     }
 
     public void switchCurrentPlayer() {
