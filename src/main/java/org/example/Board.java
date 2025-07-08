@@ -47,7 +47,7 @@ public class Board {
             }
             System.out.println();
             if (i < 2)
-                System.out.println(" ------ well here is a change");
+                System.out.println(" ------");
         }
     }
 
